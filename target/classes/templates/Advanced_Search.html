@@ -1,0 +1,77 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Medecin Form</title>
+ <link th:href="@{../../webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" />
+ <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+</head>
+<body>
+
+
+  
+  <form th:object="${findForm}"  method="POST" th:action="@{/medecins/search}" cssClass="form" >    
+   
+   <div class="container">
+  <h2>Formulaire médecin</h2>
+   <div class="form-group">
+    <label>Spécialité</label>
+    
+    <!--  <input type="text" th:field="*{specialite}" cssClass="form-control" id="specialite" />
+    
+    <form:input path="specialite" cssClass="form-control" id="specialite" /> -->
+    <select th:field="*{specialite}" cssClass="form-control" 
+    Selected="*{findForm.specialite}" name="tp6"  id="specialite">
+
+	<option value="spec 1">spec 1</option>
+	<option value="spec 2">spec 2</option>
+	<option value="spec 3">spec 3</option>
+
+</select> 
+
+   </div>
+   
+      <div class="form-group">
+    <label>Pseudo</label>
+    <input type="text" th:field="*{pseudo}" cssClass="form-control" id="nom" />
+   </div>
+   
+   <button type="submit" class="btn btn-primary">chercher</button>
+
+  
+ </div>
+ 
+ <div class="container">
+  <h2>Liste des médecins</h2>
+  <table class="table table-striped">
+   <thead>
+    <th scope="row">#ID</th>
+    <th scope="row">Nom</th>
+    <th scope="row">Prénom</th>
+    <th scope="row">Spécialité</th>
+        <th scope="row">Update</th>
+    <th scope="row">Delete</th>
+   </thead>
+   <tbody>
+     <tr th:each ="med : ${findForm.listmed}">
+      <td th:utext="${med.id}"> </td>
+      <td th:utext="${med.nom}"> </td>
+      <td th:utext="${med.prenom}"> </td>
+      <td th:utext="${med.specialite}"> </td>
+      <td>
+      <a th:href="@{/medecins/update/{id}(id=${med.id})}" 
+      class="btn btn-primary" role="button">Update</a>
+      </td>
+      <td>
+       <a th:href="@{/medecins/delete/{id}(id=${med.id})}"
+        class="btn btn-primary" role="button">Delete</a>
+
+      </td>
+     </tr>
+   </tbody>
+  </table>
+  
+ </div>
+  </form>
+</body>
+</html>

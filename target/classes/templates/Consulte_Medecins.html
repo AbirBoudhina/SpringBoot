@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Liste des médecins</title>
+ <link th:href="@{../../webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" />
+ <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Liste des Medecins</h2>
+  <table class="table table-striped">
+   <thead>
+    <th scope="row">#ID</th>
+    <th scope="row">Nom</th>
+    <th scope="row">Prénom</th>
+        <th scope="row">Specialité</th>
+    <th scope="row">Update</th>
+    <th scope="row">Delete</th>
+   </thead>
+   <tbody>
+     <tr th:each="c : ${listemedecins}">
+      <td th:utext="${c.id}"> </td>
+      <td th:utext="${c.nom}"> </td>
+      <td th:utext="${c.prenom}"> </td>
+       <td th:utext="${c.specialite}"> </td>
+      <td>
+       <a class="btn btn-primary" th:href="@{/medecins/update/{id} (id=${c.id})}"
+        role="button" >Update</a>
+      </td>
+      <td>
+       <a class="btn btn-primary" th:href="@{/medecins/delete/{id} (id=${c.id})}"
+        role="button" >Delete</a>
+      </td>
+     </tr>
+   </tbody>
+  </table>
+  <a class="btn btn-primary" th:href="@{/medecins/add}" role="button" >Ajouter un nouveau medecin</a>
+ </div>
+</body>
+</html>

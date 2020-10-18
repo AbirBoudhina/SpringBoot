@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rendez-vous Form</title>
+ <link th:href="@{../../webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" />
+ <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Liste des rendez-vous</h2>
+  <table class="table table-striped">
+   <thead>
+    <th scope="row">#ID</th>
+    <th scope="row">Client</th>
+    <th scope="row">Medecin</th>
+    <th scope="row">Date</th>    
+    <th scope="row">Update</th>
+    <th scope="row">Delete</th>
+   </thead>
+   <tbody>
+     <tr th:each=" c : ${listerdvs}">
+      <td th:utext="${c.id}"> </td>
+      <td th:utext="${c.client.nom}+' '+${c.client.prenom}"> </td>
+      <td th:utext="${c.medecin.nom}+' '+${c.medecin.prenom}"> </td>
+      <td th:utext="${c.jour}"> </td>
+      
+      <td>
+       <a class="btn btn-primary" th:href="@{/rdvs/update/{id} (id=${c.id})}" role="button" >Update</a>
+      </td>
+      <td>
+       <a class="btn btn-primary" th:href="@{/rdvs/delete/{id} (id=${c.id})}" role="button" >Delete</a>
+      </td>
+     </tr>
+   </tbody>
+  </table>
+  <a class="btn btn-primary" th:href="@{/rdvs/add}" role="button" >Ajouter un nouveau rendez-vous</a>
+ </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Client Form</title>
+ <link th:href="@{../../webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" />
+ <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Formulaire Client</h2>
+  
+  <form th:object="${clientForm}" method="POST" th:action="@{/clients/save}" cssClass="form" >
+   <hidden type="text" th:field="*{id}"/>
+   
+   <div class="form-group">
+    <label>Nom</label>
+    <input type="text" th:field="*{nom}" cssClass="form-control" id="nom" />
+   </div>
+   
+   <div class="form-group">
+    <label>Prenom</label>
+    <input type="text" th:field="*{prenom}" cssClass="form-control" id="prenom" />
+   </div>
+   
+   
+   <button type="submit" class="btn btn-primary">Ajouter</button>
+  </form:form>
+  
+ </div>
+
+</body>
+</html>

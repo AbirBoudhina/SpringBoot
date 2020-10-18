@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Client Form</title>
+ <link th:href="@{../../webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" />
+ <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <h2>Formulaire rendez-vous</h2>
+  
+  <form th:object="${rdvForm}" method="POST" th:action="@{/rdvs/save}" cssClass="form" >
+  
+   
+   <div class="form-group">
+    <label>ID</label>
+   <input type="text" th:field="*{id}"  readonly="true" cssClass="form-control"/>
+   </div>
+   
+   <div class="form-group">
+    <label>Client</label>
+ 
+       <select  th:field="*{client.id}" cssClass="form-control"  
+       id="rdv.client.id">
+                       
+            <option th:each = "c : ${clients}" th:value="${c.id}" th:utext="${c.nom}" >  </option>
+            
+        </select>
+        
+   </div>
+   
+      <div class="form-group">
+    <label>Medecin</label>
+    
+       <select th:field="*{medecin.id}" cssClass="form-control" id="rdv.medecin.id">
+   
+            <option th:each="m : ${meds}" th:value="${m.id}" th:utext="${m.nom}"> </option>
+       
+        </select>
+   </div>
+   
+<div class="form-group">
+    <label>Date</label>
+    <input type="text" th:field="*{jour}" cssClass="form-control" id="rdv.jour" />
+   </div>
+   
+   
+   <button type="submit" class="btn btn-primary">Ajouter</button>
+  </form:form>
+  
+ </div>
+</body>
+</html>
